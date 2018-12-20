@@ -1,0 +1,35 @@
+<div class="sidenav">
+	<div style="background-color: yellow; width: 88%;">
+		<%= link_to "Return Book", {:controller => 'book', :action => 'list'}%>
+	</div>
+	<div>Title: <%= @book.title %></div>
+	<div>Programming Language: <%= @book.proglang %></div>
+	<div>Description: <%= @book.description %></div>
+</div>
+<div class="main">
+	<% if @pages.blank? %>
+	
+		<p>Your book is currently empty.</p>
+		<span><%= link_to "Add new Page", {:action => 'new', :id => params[:id] }%></span>
+	
+	<% else %>
+	
+		<p>These are your book's pages</p>
+
+		<span><%= link_to "Add new Page", {:action => 'new', :id => params[:id] }%></span>
+		
+
+		<ul id = "pages">
+		    <% @pages.each do |c| %>
+		    <li>
+		   	<%= link_to "Page #{c.pagenum}", {:action => 'viewpage', :id => params[:id], :pageid => c.id, data: { turbolinks: false }} %>
+		   	<b> <%= link_to 'Edit', {:action => "edit", :pageid => c.id, :id => params[:id], data: { turbolinks: false }}, method: :get %></b>
+			<b> <%= link_to "Delete", {:action => 'delete', :pageid => c.id, :pagenum => c.pagenum, :id => params[:id]},
+			      data: {confirm: "Are you sure you want to delete this page?"} %></b>
+		    </li>
+		    <% end %>
+		</ul>
+
+	<% end %>
+
+<div>

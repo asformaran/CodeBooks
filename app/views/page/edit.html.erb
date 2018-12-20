@@ -1,0 +1,46 @@
+<div class="split left">
+
+	<h1 class="editpageheader">Edit Page Detail</h1>
+
+	<%= form_for @page, :url =>{:action => "update", :pageid => @page, :id => params[:id]} do |f| %>
+
+	<div class="formbox">
+	    
+	    <%= hidden_field_tag 'id', value = params[:id] %>
+
+		<% if @page.imgpath != nil %>
+			<div class="imagepresent"><%= image_tag(@page.imgpath, :size => "600x400", :class => "imgg") %>
+			<%= link_to 'Remove Image (NOT REVERSIBLE!)', {:action => 'rmvimg', :pageid => params[:pageid], :id => params[:id]} %></div>
+		<% end %>
+
+		<div class="page_replaceimage">Replace Image: <%= f.file_field 'imgpath', :accept => 'image/png,image/gif,image/jpeg,image/jpg' %></div>
+
+		<div class="page_text"><%= f.text_area 'content', class: 'text' %></div>
+
+		<div class="page_submit">
+			<span><%= f.submit "Save changes", class: "savechange" %><span>
+			<span><%= link_to 'Cancel', {:action => 'show', :id => params[:id] }, class: "cancelchange" %></span>
+		</div>
+
+	<% end -%>
+
+	</div>
+
+</div>
+
+<div class="split right editor-container">
+  <div class="sec-widget" data-widget="da221605a3f60558bd3f3ae1664436e3"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+SEC_HTTPS = true;
+SEC_BASE = "compilers.widgets.sphere-engine.com"; 
+(function(d, s, id){ SEC = window.SEC || (window.SEC = []);
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; 
+  js.src = (SEC_HTTPS ? "https" : "http") + "://" + SEC_BASE + "/static/sdk/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);   
+}(document, "script", "sphere-engine-compilers-jssdk"));
+</script>

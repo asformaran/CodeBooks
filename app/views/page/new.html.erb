@@ -1,0 +1,42 @@
+<div class="split left">
+
+  <%= form_tag 'create', multipart: true do %>
+
+  <div class="formbox">
+
+  	<div class="containers">
+  		<div class="backed"><%= link_to 'Back', {:action => 'show', :id => params[:id], data: { turbolinks: false }}, method: :get %></div>
+  	</div>
+    
+    <%=hidden_field_tag 'id', value = params[:id] %>
+
+    <div class="page_image"><label for = "page_image">Image:</label>
+    <%=file_field_tag 'image', :accept => 'image/png,image/gif,image/jpeg,image/jpg'%></div>
+
+    <div class="page_text">
+    <%=text_area_tag 'content',"", class: 'text', placeholder: "Enter your story"%></div>
+
+    <div class="page_submit"><%= submit_tag 'Submit', class: "savepage" %></div>
+
+  </div>
+
+  <% end -%>
+
+</div>
+
+<div class="split right editor-container">
+  <div class="sec-widget" data-widget="da221605a3f60558bd3f3ae1664436e3"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+SEC_HTTPS = true;
+SEC_BASE = "compilers.widgets.sphere-engine.com"; 
+(function(d, s, id){ SEC = window.SEC || (window.SEC = []);
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; 
+  js.src = (SEC_HTTPS ? "https" : "http") + "://" + SEC_BASE + "/static/sdk/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);   
+}(document, "script", "sphere-engine-compilers-jssdk"));
+</script>

@@ -1,0 +1,57 @@
+<div class="split left">
+
+  <div class="formbox">
+
+  	<div class="containers">
+  		<div class="backed"><%= link_to 'Back', {:action => 'show', :id => params[:id], 
+        data: { turbolinks: false }}, method: :get %></div>
+      <div class="edit"><%= link_to 'Edit', {:action => 'edit', :pageid => params[:pageid], :id => params[:id], 
+        data: { turbolinks: false }}, method: :get %></div>
+  		<div class="pagination">
+        <a>&laquo;</a>
+          <% @pages.each do |c| %>
+            <span id = "pages">
+              <% if c.id == @page.id %>
+                <u><%= link_to c.pagenum, {:action => 'viewpage', :id => params[:id],
+                 :pageid => c.id, data: { turbolinks: false }}, class: "active", method: :get %></u>
+              <% else %>
+                <%= link_to c.pagenum, {:action => 'viewpage', :id => params[:id], :pageid => c.id, data: { turbolinks: false }}, method: :get %>
+              <% end %>
+            </span>
+          <% end %>
+        <a>&raquo;</a>
+      </div>
+  	</div>
+    
+    <% if @page.imgpath %>
+      <div class="imagepresent"><%= image_tag(@page.imgpath, :size => "600x380", :class => "imgg") %></div>
+    <% else %>
+      <div class="page_image centerstyle">No Image Found</div>
+    <% end %>
+
+    <% if @page.content %>
+      <div class="page_text" style="margin-left: 1%;"><%= @page.content %></div>
+    <% else %>
+      <div class="page_text"></div>
+    <% end %>
+
+  </div>
+
+</div>
+
+<div class="split right editor-container">
+  <div class="sec-widget" data-widget="da221605a3f60558bd3f3ae1664436e3"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+SEC_HTTPS = true;
+SEC_BASE = "compilers.widgets.sphere-engine.com"; 
+(function(d, s, id){ SEC = window.SEC || (window.SEC = []);
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; 
+  js.src = (SEC_HTTPS ? "https" : "http") + "://" + SEC_BASE + "/static/sdk/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);   
+}(document, "script", "sphere-engine-compilers-jssdk"));
+</script>

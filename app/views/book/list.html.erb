@@ -1,0 +1,33 @@
+<body class="list">
+	
+	<% if @books.blank? %>
+	<h1 style="color:black;">Your library is currently empty.</h1>
+	<div class="item">
+		<%= image_tag('whitebook.jpg', :size => "200x200") %><br>
+		<div class="itemtext"><%= link_to "Add New Book", {:action => 'new'}, style: 'color:black;' %></div>
+	</div>
+	<% else %>
+	<h1 style="color:black;">These are the current books in our system</h1>
+
+	<div class="item">
+		<%= image_tag('whitebook.jpg', :size => "200x200") %><br>
+		<div class="itemtext"><%= link_to "Add New Book", {:action => 'new' }, style: 'color:black;' %></div>
+	</div>
+
+	<div id = "books" class="books">
+	    <% @books.each do |c| %>
+	    <div class="item">
+	    	<%= image_tag('bookcover.png', :size => "200x200") %><br>
+		   	<div class="itemtext">
+			   	<%= link_to c.title, {:action => 'open', :id => c.id, data: { turbolinks: false }}, style: 'color:black;' %>
+			   	<%= link_to 'Edit', {:action => "edit",:id => c.id}, style: 'color:black;' %>
+				<%= link_to "Delete", {:action => 'delete', :id => c.id},
+				      data: {confirm: "Are you sure you want to delete this book?"}, style: 'color:black;' %>
+			</div>
+		</div>
+	    <% end %>
+	</div>
+
+	<% end %>
+
+</body>

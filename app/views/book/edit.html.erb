@@ -1,0 +1,27 @@
+<body class="editbook">
+
+	<div class="editform">
+		<h1>Edit Book Detail</h1>
+
+		<div class="form">
+			<%= form_for @book, :url =>{:action => "update", :id =>@book} do |f| %>
+
+			<div class="formtitle">Title: <br><%= f.text_field 'title', class: "titlefield" %></div>
+
+			<div class="formproglang">Programming Language: <%= f.select :proglang, [ ['Python', 'python'], 
+						['Java', 'java'], ['Ruby', 'ruby'], ['C','c'], ['Go', 'go'] ], {},  
+						:class => "proglangfield" %></div>
+
+			<div class="formdesc">Description<br><%= f.text_area 'description', class: "descfield" %></div>
+
+			<div class="formsubmit"><%= f.submit "Save", class: "savebutton" %>
+				
+			<% end %>
+
+			<%= link_to 'Cancel', {:action => 'list' }, class: "cancelbutton" %></div>
+
+		</div>
+
+	</div>
+
+</body>
